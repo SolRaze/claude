@@ -1,0 +1,54 @@
+styles catalog
+
+load only when brief names a style or asks for options | never as default start
+adapt fonts + palette to brand | contrast, states, motion, anti-slop rules still apply
+mono column entries | code + data only, drop otherwise
+radius not listed | sharp for brutalist, editorial, retro | soft for friendly, clay | pill for playful
+named products | inspiration only | never copy logos, names, trade dress
+source bergside/awesome-design-skills https://github.com/bergside/awesome-design-skills | MIT | Copyright (c) 2026 Bergside
+check contrast on the chosen pair before use | verify text vs surface 4.5:1
+
+| Style | Feel | Fonts | Key colors |
+|---|---|---|---|
+| Agentic | Conversational AI-first interface with minimal controls, clear outcomes, and delegated task flows for agentic workflows | Playfair Display / JetBrains Mono | primary #FF5701, secondary #F6F6F1, surface #FFFFFF, text #111827 |
+| Ant | Structured, enterprise-focused design system emphasizing clarity, consistency, and efficiency for data-dense web applications | Plus Jakarta Sans / JetBrains Mono | primary #1677ff, secondary #8B5CF6, surface #FFFFFF, text #111827 |
+| Basic | Print-inspired visual language for books, magazines, and reports with editorial grids and expressive typography | Nunito / Oswald / JetBrains Mono | primary #A855F7, secondary #0A1829, surface #FFFFFF, text #0A1829 |
+| Bento | Modular grid layout with card-like blocks, clear hierarchy, soft spacing, and subtle visual contrast for organized, scannable interfaces | Inter / JetBrains Mono | primary #FAD4C0, secondary #80A1C1, surface #FFF5E6, text #111827 |
+| Brutalism | Raw, anti-design aesthetic inspired by concrete architecture with unadorned elements, jarring layouts, and functional minimalism | Darker Grotesque / JetBrains Mono | primary #DD614C, secondary #DAA144, surface #FFFFFF, text #111827 |
+| Cafe | Cozy cafe-inspired interface with warm tones, soft typography, and clean layouts for a relaxed browsing experience | Poppins / JetBrains Mono | primary #5D4432, secondary #E9E3DD, surface #F9F7F5, text #3E2B1E |
+| Claymorphism | Soft, rounded 3D-like shapes mimicking malleable clay with playful, puffy elements and colorful surfaces | Montserrat / Poppins / JetBrains Mono | primary #3B82F6, secondary #FFFFFF, surface #FFFFFF, text #1C398E |
+| Codex | A radically minimal, blank-canvas interface built as a pure edge-to-edge surface, with almost no color and typography carrying the visual weight. Black serves as the only filled color, the only divider, and the sole surface tone cards | Open Sans / JetBrains Mono | primary #000000, secondary #ffffff, surface #FFFFFF, text #111827 |
+| Contemporary | Current-era minimalist design with bento grids, dark mode support, and high-performance accessible layouts | Jost / Overpass Mono | primary #C800DF, secondary #E60076, surface #FFFFFF, text #111827 |
+| Doodle | Hand-drawn, sketch-like style with doodles, handwritten fonts, and imperfect lines for a playful, informal feel | Delius Swash Caps / JetBrains Mono | primary #49B6E5, secondary #263D5B, surface #FFFFFF, text #111827 |
+| Dramatic | High-contrast, theatrical design with bold layouts, immersive visuals, and unconventional compositions that command attention | Outfit / JetBrains Mono | primary #8B5CF6, secondary #F43F5E, surface #09090B, text #FAFAFA |
+| Editorial | Magazine-inspired editorial layout with refined serif typography, structured grids, and elegant reading experiences | Gelasio / Ubuntu Mono | primary #111111, secondary #f1f1f1, surface #FFFFFF, text #111827 |
+| Enterprise | Dark-themed cloud-platform aesthetic with modular grids, glass-like panels, and strong data hierarchy for productivity dashboards | IBM Plex Sans | primary #0C5CAB, secondary #0a4a8a, surface #09090b, text #fafafa |
+| Expressive | Vibrant, personality-driven design with bold colors, playful graphics, and dynamic layouts that balance creativity with structure | IBM Plex Mono | primary #db2777, secondary #2563eb, surface #FFFFFF, text #111827 |
+| Fantasy | Game-inspired fantasy aesthetic with bold, premium visuals, rich color palettes, and immersive thematic elements | New Rocker / IBM Plex Mono | primary #0250CC, secondary #FDC800, surface #FFFFFF, text #111827 |
+| Fiction | A playful, energetic, cartoonesque interface inspired by friendly children's-book illustrations, warm cream backgrounds, big bold custom display typography, saturated brand color blocks, thick black outlines, generously rounded shapes | Cossette Texte / JetBrains Mono | primary #222222, secondary #FFE9CE, surface #FFFFFF, text #111827 |
+| Flat | Two-dimensional minimalist style with vibrant colors, clean typography, and no 3D effects for fast, user-friendly interfaces | Inter / JetBrains Mono | primary #F2673C, secondary #8B5CF6, surface #FFFFFF, text #111827 |
+| Friendly | Approachable, intuitive design with rounded elements, ample whitespace, and soft pastel color palettes | Noto Serif Display / Space Mono | primary #F2D9DC, secondary #D9F2D8, surface #FFFFFF, text #111827 |
+| Glassmorphism | Frosted glass effect with translucent layers, subtle blur, and luminous borders for depth and modern elegance | Plus Jakarta Sans / JetBrains Mono | primary #1856FF, secondary #3A344E, surface #FFFFFF, text #141414 |
+| Gradient | Smooth color transitions and gradient-rich surfaces for modern, playful interfaces with visual depth | Montserrat / Space Grotesk / JetBrains Mono | primary #990FFA, secondary #E60076, surface #FFFFFF, text #111827 |
+| Immersive | An immersive, interactive, exhibit-style interface that blends storytelling, animation, and gamified elements to create a playful, experience-driven journey. The entire app sits on a single continuous brand-colored canvas (deep green) | Oswald / sans-serif / JetBrains Mono | primary #00592B, secondary #0023D1, surface #FFFFFF, text #111827 |
+| Impeccable | A modern, graphic, editorial-poster aesthetic, warm and confident, built on alternating cream and burnt orange sections, an amber brand color | Chakra Petch / JetBrains Mono | primary #CC8800, secondary #C55221, surface #FFFFFF, text #111827 |
+| Levels | Conversion-focused design that removes friction and guides users toward action through clarity, trust, and speed | Inter / JetBrains Mono | primary #27272A, secondary #8B5CF6, surface #FFFFFF, text #111827 |
+| Lingo | Playful, minimal design with bright colors, rounded shapes, tactile 3D borders, and friendly illustrations for approachable interfaces | Nunito / JetBrains Mono | primary #58cc02, secondary #ce82ff, surface #FFFFFF, text #3c3c3c |
+| Material | Google's Material Design with layered surfaces, dynamic theming, built-in motion, and responsive cross-platform patterns | Inter / Roboto / Fira Code | primary #6442D6, secondary #C8B3FD, surface #FFFFFF, text #111827 |
+| Minimal | Stripped-back design emphasizing whitespace, clean typography, and restrained color for maximum clarity and focus | Open Sans / Inter / Inconsolata | primary #0C0C09, secondary #312C85, surface #F4F4F1, text #0C0C09 |
+| Neobrutalism | Modern take on brutalism with bold borders, vivid accent colors, and raw, high-contrast layouts on warm surfaces | Inter / JetBrains Mono | primary #FDC800, secondary #432DD7, surface #FBFBF9, text #1C293C |
+| Paper | Paper-textured, print-inspired design with minimal colors, clean serif/sans typography, and tactile surface qualities | Roboto / Montserrat / PT Mono | primary #111111, secondary #8B5CF6, surface #FFFFFF, text #111827 |
+| Perspective | Spatial depth design with isometric views, vanishing points, and layered elements that guide attention through 3D-like realism | Poppins / Oswald / JetBrains Mono | primary #00BD7D, secondary #00BD7D, surface #FFFFFF, text #111827 |
+| Power | High-end dark aesthetic with bold headings, monochromatic palette, and premium feel for premium brand experiences | Oswald / JetBrains Mono | primary #FAFAFA, secondary #FAFAFA, surface #000000, text #ffffff |
+| Professional | Polished, business-ready design with modern typography, structured layouts, and a trustworthy visual identity | Poppins / IBM Plex Mono | primary #FECE14, secondary #000000, surface #FFFFFF, text #111827 |
+| Riso | A playful, joyful, two-color risograph print aesthetic built on a single warm off-white paper surface running through every section | Space Grotesk / Overpass Mono | primary #F237A1, secondary #2C40A7, surface #FFFFFF, text #111827 |
+| Roku | App dashboard with purple-themed aesthetic, top-bar navigation, card-based layouts, and developer-first workflows | Inter / JetBrains Mono | primary #9333ea, secondary #a855f7, surface #FFFFFF, text #09090b |
+| Sega | A playful, arcade-inspired interface for games, built on the VT323 pixel typeface, hard-edged 0px corners, chunky pill buttons that physically press into solid offset blocks | VT323 / JetBrains Mono | primary #4502FF, secondary #FFDA14, surface #FFFFFF, text #111827 |
+| Shadcn | Shadcn/ui-inspired design with minimal, clean components, monochrome palette, and utility-first patterns | Geist / Fira Code | primary #000000, secondary #111111, surface #FFFFFF, text #111827 |
+| Sketch | A friendly, hand-drawn sketch interface inspired by pencil illustrations on warm cream paper. Soft teal brand accents, hand-written display headings, rounded pill controls | Delicious Handrawn / JetBrains Mono | primary #1DAD97, secondary #F4EDE0, surface #FFFFFF, text #111827 |
+| Skeumorphism | Real-world mimicry with textured surfaces, 3D effects, and familiar physical metaphors for intuitive digital interfaces | Roboto / Germania One / JetBrains Mono | primary #FA3C00, secondary #F08321, surface #FFFFFF, text #111827 |
+| Stitch | Clean, high-contrast enterprise design for data-driven workflows with intuitive drag-and-drop patterns and structured layouts | Ubuntu / Oswald / Ubuntu Mono | primary #072C2C, secondary #FF5F03, surface #EDEADE, text #111827 |
+| Terracotta | A sun-baked, clay-toned editorial interface built on warm cream surfaces, ink-brown headlines set in a display serif, and a single terracotta accent | DM Serif Display / JetBrains Mono | primary #C56A3C, secondary #F3E9D8, surface #FFFFFF, text #111827 |
+| Tetris | Classic block-game inspired design with playful colors, bold display fonts, and compact, high-energy layouts | Bangers / JetBrains Mono | primary #1C202B, secondary #7107E7, surface #DFE7FF, text #1C398E |
+| Vibrant | Lively, colorful design with bold playful typography, warm accents, and dynamic visual energy | Noto Sans / Fascinate / Fira Code | primary #7C61D4, secondary #EAAE87, surface #FFFFFF, text #2F281D |
+| Vintage | 1950s-1990s nostalgia with skeuomorphic touches, grainy textures, retro color palettes, and pixel-style typography | Silkscreen / JetBrains Mono | primary #008080, secondary #C0C0C0, surface #C0C0C0, text #000000 |
