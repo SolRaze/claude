@@ -1,0 +1,8 @@
+modes/caveman.md and hooks/caveman-statusline.sh are adapted from Caveman
+https://github.com/JuliusBrussee/caveman | Apache-2.0
+Caveman
+Copyright 2026 Julius Brussee
+
+modes/ponytail.md and hooks/ponytail-statusline.sh are adapted from ponytail
+https://github.com/DietrichGebert/ponytail | MIT
+Copyright (c) 2026 DietrichGebert

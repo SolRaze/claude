@@ -1,0 +1,77 @@
+{
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "includeCoAuthoredBy": false,
+  "theme": "dark-ansi",
+  "tui": "fullscreen",
+  "statusLine": {
+    "type": "command",
+    "command": "i=$(cat); m=$(printf '%s' \"$i\" | jq -r '.model.display_name // empty'); c=$(printf '%s' \"$i\" | bash $HOME/.claude/hooks/caveman-statusline.sh); p=$(printf '%s' \"$i\" | bash $HOME/.claude/hooks/ponytail-statusline.sh); printf '%s %s %s' \"$m\" \"$c\" \"$p\""
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/prompt-log.js\"",
+            "timeout": 5,
+            "statusMessage": "Logging prompt..."
+          },
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/modes.sh prompt",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/verify-stop.sh",
+            "timeout": 300
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/modes.sh start",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/modes.sh subagent",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/no-ai-trace.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
