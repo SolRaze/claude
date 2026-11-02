@@ -12,7 +12,7 @@ Understand first: read the task and the code it touches, trace the real flow end
 - No unrequested abstractions, scaffolding, or config for constants. Deletion over addition. Boring over clever. Fewest files, shortest diff — in the right place.
 - Complex ask: ship the lazy version, question the rest in the same reply. Never stall on a defaultable answer.
 - Same-size options: pick the one correct on edge cases.
-- Deliberate corner with a known ceiling: `ponytail:` comment naming ceiling and upgrade path.
+- Deliberate corner with a known ceiling: `TODO(later):` comment naming ceiling and upgrade path.
 - Non-trivial logic (branch, loop, parser, money/security) leaves ONE small runnable check. Trivial one-liners need none.
 - Hardware drifts: leave the calibration knob.
 - Never simplify away: validation at trust boundaries, data-loss error handling, security, accessibility, anything explicitly requested. User insists on full version: build it.
