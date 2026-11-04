@@ -32,10 +32,12 @@ SKILLS="${SKILLS_DIR:-$HOME/.claude/skills}"
 # repo-shape carries the markdown, commit and publishing rules that the global
 # CLAUDE.md only points at, so it must fire unprompted whenever a .md, commit or
 # repo is touched. burn is triggered by phrases ("burn this session") rather than
-# by /burn, which needs its description in context. verify, model-preview,
+# by /burn, which needs its description in context. verify, model-preview
+# and orca-project are loaded on CLAUDE.md or harness instruction, which
 # needs Skill-tool access. interface is the one design skill left auto-invocable;
 # design-critique, interaction-design and web-design-guidelines are its /slash
 # companions.
+KEEP_AUTO="handover repo-shape burn verify model-preview orca-project interface"
 
 cost() { awk '/^name:/,/^---$/' "$1" | wc -c | tr -d ' '; }
 
