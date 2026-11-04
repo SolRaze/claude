@@ -10,8 +10,8 @@ item transform is row-vector 4x3 | write transpose of R, then translation
 plate pitch `235 * 1.2 = 282` | plates in `ceil(sqrt(n))` columns | each item placed inside its plate's cell
 
 preset resolution
-resolve by `inherits` chain | user dir, then system, then app profiles, then `~/Projects/Code/orcaslicer-profiles` | merge base first
-Orca 2.5 packs system presets into unreadable `.opc` | the sparse upstream clone supplies them | `git -C ~/Projects/Code/orcaslicer-profiles pull` to refresh
+resolve by `inherits` chain | user dir, then system, then app profiles, then `~/Projects/Code/upstream/orcaslicer-profiles` | merge base first
+Orca 2.5 packs system presets into unreadable `.opc` | the sparse upstream clone supplies them | `git -C ~/Projects/Code/upstream/orcaslicer-profiles pull` to refresh
 a missing parent asserts | never fall back to template values, they leak 0.08 layer height and 0.5 line widths
 overlay only keys already in template `project_settings` | skip `name inherits from setting_id filament_id instantiation version type compatible_*`
 filament scalars wrap to one-element lists | set `print_settings_id` and filament id to the preset names
