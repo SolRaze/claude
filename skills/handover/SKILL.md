@@ -31,8 +31,14 @@ do not transcribe what it can look up in one command. Cut:
 ## Shape
 
 Everything inside ONE plain ``` fence (no language tag): title, facts, directive. Nothing
-outside it except at most one short line offering the next step. Title fenced and facts
-loose below it = failed handover.
+outside it except the memory proposals below and at most one short line offering the next
+step. Title fenced and facts loose below it = failed handover.
+
+**Memory proposals** — after the fence, for sol, not the receiver. Label `memory`, then
+each proposed store line exactly as it would be written, with its store path and add, edit
+or delete. Only durable rules and traps the code and repo docs don't hold, plus store lines
+the session proved wrong. Never session activity or anything one command shows. Nothing
+qualifies: `memory none`.
 
 1. **Title** — one line, ≤6 words, `<project>: <outcome>`. Project name first, primary
    outcome not first topic. No quotes, no period. ≤3 comma-separated workstreams.
@@ -79,6 +85,5 @@ Out-of-scope fact only when the scoped work breaks without it.
 
 ## Boundaries
 
-Read-only: prints to chat, changes no files (`git status`/`log` fine). Memory is touched
-only when a store fact is now wrong or a durable trap was learned — fix that line in
-place; an explicit archive is the only full write.
+Read-only: prints to chat, changes no files (`git status`/`log` fine). Memory is written
+only on sol's yes to a proposal; an explicit archive is the only full write.
