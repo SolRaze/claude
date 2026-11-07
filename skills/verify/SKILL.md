@@ -16,4 +16,5 @@ Added lines with a currency amount are refused.
 
 Gotchas
 - Repos that track `.claude/` on purpose (the dotfiles stow tree) still fail; unstage or confirm with sol.
+- Repo pushed only to private infra, never a public host: `git config verify.private true` skips the path check, never the currency or message checks.
 - Full rules live in `repo-shape`; this is the mechanical floor.
