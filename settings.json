@@ -37,6 +37,15 @@
             "timeout": 300
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/handover-at.sh",
+            "timeout": 10
+          }
+        ]
       }
     ],
     "SessionStart": [
@@ -75,5 +84,5 @@
     ]
   },
   "outputStyle": "caveman",
-  "autoCompactWindow": 200000
+  "autoCompactEnabled": false
 }
