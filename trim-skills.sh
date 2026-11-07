@@ -15,10 +15,9 @@
 # Re-measure before adding to it. The transcript window is only as long as the
 # last prune left behind, so a zero there means "not used lately", not "never".
 #
-# caveman and ponytail are deliberately NOT in the list. Both are injected in
-# full by their SessionStart hooks on every session, so auto-invocation was
-# buying a second copy of something already present, and level switching goes
-# through /caveman and /ponytail regardless.
+# caveman and ponytail are deliberately NOT in the list. caveman is the
+# output style and ponytail is injected by its SessionStart hook, so both are
+# present every session and auto-invocation would add a second copy.
 #
 # Plugin skills are edited under plugins/cache/, which is what actually loads —
 # plugins/marketplaces/ is only the source clone. A `/plugin update` installs a

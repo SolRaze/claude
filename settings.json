@@ -73,5 +73,7 @@
         ]
       }
     ]
-  }
+  },
+  "outputStyle": "caveman",
+  "autoCompactWindow": 200000
 }

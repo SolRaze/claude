@@ -1,7 +1,6 @@
 ---
 name: burn
-description: Wipe Claude-side state (transcripts, memory store, memory.md row) for a session, name or project. To Trash, dry run until --yes.
-disable-model-invocation: true
+description: Wipe Claude-side state (transcripts, memory store, memory.md row) for a session, name or project. To Trash, dry run until --yes. Use on "burn this session", "burn <project>", "wipe this chat".
 effort: low
 ---
 

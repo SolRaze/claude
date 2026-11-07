@@ -4,7 +4,7 @@
 set -euo pipefail
 R=$(cd "$(dirname "$0")" && pwd)
 D=$HOME/.claude
-mkdir -p "$D/skills" "$D/hooks" "$D/modes" "$D/repos"
+mkdir -p "$D/skills" "$D/hooks" "$D/modes" "$D/output-styles" "$D/repos"
 
 link() {
   if [ -e "$2" ] && [ ! -L "$2" ]; then echo "skip $2 (exists)"; else ln -sfn "$1" "$2"; fi
@@ -13,6 +13,7 @@ link() {
 for s in "$R"/skills/*/; do s=${s%/}; link "$s" "$D/skills/$(basename "$s")"; done
 for f in "$R"/hooks/*; do link "$f" "$D/hooks/$(basename "$f")"; done
 for f in "$R"/modes/*; do link "$f" "$D/modes/$(basename "$f")"; done
+for f in "$R"/output-styles/*; do link "$f" "$D/output-styles/$(basename "$f")"; done
 
 # repos.md lines: - name | owner/repo | path
 awk -F' [|] ' '/^- / && NF==3 {sub(/^- /,"",$1); print $1"\t"$2"\t"$3}' "$R/repos.md" |
