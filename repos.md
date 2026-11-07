@@ -4,7 +4,6 @@ third-party skills | cloned to ~/.claude/repos | linked by install.sh | keep lin
 
 skills
 - cc-canary | delta-hq/cc-canary | skills/cc-canary
-- design-critique | Owl-Listener/designer-skills | design-ops/skills/design-critique
 - web-design-guidelines | vercel-labs/agent-skills | skills/web-design-guidelines
 
 credit
