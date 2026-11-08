@@ -23,3 +23,5 @@ modes.sh turns ponytail on at ultra every session | remove its hooks from settin
 read-cap.sh denies whole-file reads past 500 lines | READ_CAP overrides
 auto-compact off | handover-at.sh makes the session print a handover past 200k context | HANDOVER_AT, HANDOVER_STEP override
 some skills name local paths under ~/Projects | edit before use
+
+license mit
