@@ -26,6 +26,30 @@ standard gamepad | `mapping === 'standard'` is by position, not printed letter
 - `mapping` empty: button order unknown | offer remap or say pad unsupported
 - browsers + OS differ for same pad | test real pad on each target before claiming support
 
+TV layout | sofa distance, pad in hand
+- design frame 1280x720 | list text 21px+ | headings 24px+ | 6 to 9 rows in view
+- sizes hold per element, not per list | desk rules win on specificity, nested links + chips shrink | compute every card's text, never one sample
+- one focus column, centred | nothing beside it competing for the eye
+- nav depth 3 max | places on ZL/ZR top right | cards on L/R as centred row | items on d-pad | no column listing cards
+- one card at a time | its items one list, not two columns
+- pick opens in place | about line + its A/Y actions under the row, list makes room | no detail pane repeating the row
+- pick inside a row (button in a pill, link in a cell) opens under the whole row | gap on the row, never on the inline element | scroll the row into view, gap included
+- launcher cards (apps, windows) as tiles | opened pick under the grid
+- A verb names the act: Turn on, Turn off, Open, Switch, or the button's own word (Sleep, Restart) | Press only when nothing names the act
+- every open state closes on B | B unwinds one level, top first: dialog, then opened pick, then place | closed pick: A reopens, moving opens the new row | bar says Close while something is open, Back otherwise
+- bar keeps navigation + back + exit | actions of the pick live with the pick, not twice
+
+selection light | reference Bloodborne title streak `MENU_Title_00002` (`menu/title.tpf`)
+- thin horizontal line, hot centre, soft body | centred behind the label | added to the black: `BLEND_RGB_ADD` | `mix-blend-mode:screen`
+- size: game front 600x47 on 1920 stage, ~12.8:1 | tabs label width + 80 by 36 | web: label width + 5 text heights by 1.7
+- no travel | crossfade in place: new pick 1 - (1 - t)^3, old pick 1 - t, 140ms | no spring, no pulse | reduced motion switches at once
+- picked text white | game: white over SOFT grey rows | web: + 8px accent glow
+- option lists in the game: `row_on` plate from `common.tpf`, navy gradient with gold rim, under the whole row
+- palette follows the surface: game gold | web: white core, accent body, grey fade | game textures stay out of published repos
+- one light per layer: page, dialog, sheet
+- light lives outside the scroller | fade it once its row leaves the visible list: under sticky header, behind tab bar | sticky header opaque
+- tiles keep their own face when picked | light marks them, border lifts one grey step
+
 button prompts
 - glyphs match last used input | pad family set for pad | key or word for keyboard | no pad glyph implying wrong button
 - brief names one set: follow it everywhere + state which pads then mismatch
@@ -61,9 +85,17 @@ hybrid DOM + canvas | real DOM under canvas drawing
 - items drawn only on canvas (grids, carousels) need DOM twin: hidden list or `aria-activedescendant` | synced to selection
 - `h1` + landmarks still exist | `aria-live` names selection change
 
+build order
+- mock 2 to 3 layouts as static HTML at target size before touching live code | user picks or combines
+- then build in steps on live code | each step: deploy, screenshot at target size, driven by real keys, shown to user
+
 testing
 - run in visible tab | hidden tab pauses `requestAnimationFrame`, stops pad polling + render
 - stub pad: `navigator.getGamepads = () => [fake]` with `id`, `connected`, `axes`, `buttons[].pressed` | press, then release | stub proves mapping only
 - wait for poses to settle before measuring or screenshotting | mid-tween positions mislead
 - synthetic pointer events can make `setPointerCapture` throw | wrap dispatches in try
 - overlays shorter than capture: set their state flag by hand, snapshot, clear
+- per state, one shot: opened, closed with B, moved after close | a state with no shot of its close is untested
+- tool: `scripts/shot.mjs <url> <out.png> <w> <h> [steps]` | headless Chromium (`SHOT_BROWSER`, default Helium), rAF live | steps: key name, `wait<ms>`, `js:<expr>`, `snap:<file>` | one run, every state
+- tour: every place x card, one pick opened in each, `snap:` per stop | `magick montage t*.png -tile 3x3 -geometry 640x360+4+4 -background '#333' tour.png` | read one sheet, then zoom the broken frames
+- inline picks found by `js:` walking the picked element up to its card | element chain shows which row the gap must sit on

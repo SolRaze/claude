@@ -21,7 +21,7 @@ references
 - references/anti-slop.md machine-made tells + alternatives
 - references/laws.md UX laws | Nielsen heuristics | Norman principles
 - references/review.md critique | required passes | scores | personas | hardening | pre-ship checklist
-- references/console.md Play surfaces | controller mapping | button prompts | hybrid DOM + canvas | input testing
+- references/console.md Play surfaces | TV layout | selection light | controller mapping | button prompts | hybrid DOM + canvas | build order | input testing | scripts/shot.mjs headless state shots
 
 load by task
 | Task | Load |
@@ -84,6 +84,7 @@ how to fill each line + presets: references/direction.md
 - real content shapes: long names | empty lists | 1,000 rows | slow network | errors
 - non-web surface: focus ring = selected state | every input surface has: controller, keyboard, mouse | drive tests through real input path, virtual device over direct method calls
 - web page drawn on canvas is web: selection + Tab focus look different | references/console.md
+- Play surface: static mocks before live code | preview after every step | references/console.md build order | screenshots: scripts/shot.mjs
 
 4 verify | bounded loop
 - check mobile (375px) + desktop (1440px) | light + dark if both exist | screenshot when tools allow | otherwise read computed values

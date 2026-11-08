@@ -60,7 +60,7 @@ surface
 - glass deliberate, named per surface, never swept on
 
 hierarchy
-- quiet everything, loud selection | selection light strong + centered on its object, underglow or leaking dot | dull or small highlight fails
+- quiet everything, loud selection | thin streak behind the label, crossfaded in place | references/console.md | dull or small highlight fails
 - little on screen: too much info, too many options, too many buttons all fail
 - not every option available right away | options revealed by context + mode
 - menus sorted by meaning, never by order features were added

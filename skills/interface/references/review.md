@@ -8,12 +8,14 @@ how to run
    - placement: persistent controls measured per view, x + y | same control same place | action near what it acts on | thumb reach | overlaps at 375px + 1440px
    - accessibility: keyboard, focus, screen reader, contrast computed from real colors
    - states + copy: locked, disabled, empty, loading, error, labels
+   - play (Play surfaces only): tour every place and card by real keys at design frame | open and B-close each pick kind: row, inline button, link, tile | each prompt verb names the act | text size computed per element | references/console.md
 3. walk 2 to 3 relevant personas | note exact failing elements
    - impatient power user: keyboard, speed, bulk actions
    - confused first-timer: jargon, missing guidance, unclear next step
    - screen-reader + keyboard-only user: labels, focus order, announcements
    - distracted one-handed mobile user: thumb reach, target size, interruptions
    - stress tester: long names, 1,000 rows, slow network, double clicks
+   - sofa user (Play): pad only, 3m away, no pointer, never read the docs
 4. score (below) | only from lists in this file
 5. report | this table is the one review format | most severe first | list what was not checked | one-line verdict after
 6. split findings into function and look | "fix it" or "fix given" on an existing UI covers function only: states, errors, keyboard, screen reader names, invisible hit areas, responsive breakage | look findings stay proposals until named one by one: icon swaps, restyled buttons, recolors, regrouped panels, moved bars | a contrast or size fix that changes the look is a look finding | after fixing, render beside the prior version, no visible change except the new states
