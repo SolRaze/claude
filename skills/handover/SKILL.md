@@ -66,7 +66,7 @@ Out-of-scope fact only when the scoped work breaks without it.
 - **Verified** — what ran and the result; otherwise "unverified". Re-verify one-liner if cheap.
 - **Live state** — running processes, watchers, non-persistent settings, expiry dates. Name
   pid/host/path/date.
-- **Pending** — priority order. Include stale docs contradicting final state.
+- **Pending** — priority order; a blocked item names its blocker. Include stale docs contradicting final state.
 - **Risks** — destructive, irreversible, security-relevant, backup paths. Carry forward or
   explicitly retire risks from a previous handover.
 
