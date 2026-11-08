@@ -7,6 +7,12 @@ most signals already in request or repo
 1. page kind: landing, app screen, dashboard, docs, portfolio, store, form flow
 2. vibe words user used: "clean", "bold", "playful", "like Linear"
 3. references: named products, URLs, screenshots | study structure, not just colors
+   named existing look | evidence order below | contract WORLD cites what was captured
+   - user's own screenshots | device, game, app, disk | exact state, exact resolution
+   - shipped assets: textures, atlases, fonts, audio banks, UI strings, layout files | decode before redrawing | real asset beats any imitation
+   - web captures | fan recreations for structure only | hotlink failures and title pages are not evidence
+   - sample colors + measure sizes, spacing, order from capture | estimated palette = not done
+   - asset license + use: user's own copy, local use only | never publish extracted assets
 4. audience + scene: who, device, light, stress | nurse at 3am + designer on 5K monitor need different things
 5. brand assets: logo, colors, fonts, tokens, current site
 6. quiet constraints: accessibility requirements, public sector, regulated (finance, health), children, trust-first commerce | constraints beat taste

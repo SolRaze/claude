@@ -23,6 +23,7 @@ visual tells
   3. newspaper hairlines + italic display serif + tiny tracked mono labels
 - Inter or system sans as brand landing display face | overused "designer" faces picked by habit: Fraunces, Playfair Display, Instrument Serif, Space Grotesk, Syne
 - light/dark chosen by category ("dev tool = dark") instead of user's scene
+- theme from name not source | Bloodborne from memory: blood-red band, bone text, teal art | Bloodborne captured: greyscale art, white text, thin gold streak, slate row with pale gold border
 
 layout tells
 - eyebrow label above every heading ("FEATURES", "HOW IT WORKS") | at most one eyebrow per three sections

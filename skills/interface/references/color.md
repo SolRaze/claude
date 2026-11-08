@@ -95,6 +95,7 @@ banned habits
 - oversaturated accents (chroma near gamut edge on large areas)
 - reflex "premium" palette: warm cream + brass/terracotta + espresso text | fine when brief or subject calls for it, wrong as default
 - five accents competing in one view
+- scaling colours in a linear space (three.js `Color`) to dim a CSS stop | dims far less than it reads | scale lightness in sRGB, HSL or oklch
 
 data visualization
 - categorical: up to 6 to 8 distinguishable hues, similar lightness | beyond that group into "Other"

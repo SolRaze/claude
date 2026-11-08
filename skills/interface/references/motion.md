@@ -12,11 +12,11 @@ decide whether to animate
 3. keyboard-initiated actions do not animate (shortcuts, arrow navigation, Cmd+K open)
 4. removal test: turn off | users lose understanding = functional | nothing lost = delete
 5. motion gaps are bugs: pop in/out on conditional render | content jump when loading ends | snapping accordions | check every `cond && <X/>` + ternary swap
-6. one motion personality per product | its curve replaces default enter curve
+6. at most one motion personality per product | named in contract: its curve replaces default enter curve | none named: default enter curve
 
 | Personality | Durations quick / standard / slow | Curve | Overshoot |
 |---|---|---|---|
-| Corporate / productivity (default for apps) | 150 / 200 / 300ms | `cubic-bezier(0.2, 0, 0, 1)` | 0 |
+| Corporate / productivity | 150 / 200 / 300ms | `cubic-bezier(0.2, 0, 0, 1)` | 0 |
 | Premium / calm | 200 / 350 / 500ms | `cubic-bezier(0.25, 1, 0.5, 1)` | 0 |
 | Energetic / marketing | 120 / 220 / 400ms | `cubic-bezier(0.16, 1, 0.3, 1)` | 0 |
 | Playful / kids / games | 150 / 250 / 400ms | springs, bounce 0.2 to 0.3 | 1.5 to 5% |
@@ -34,7 +34,7 @@ durations
 | Modal, sheet | 200 to 400ms |
 | Drawer | up to 500ms with iOS-like curve |
 | Accordion / height change | 200 to 300ms |
-| Page or route transition | 250 to 400ms |
+| Page or route transition | 200 to 300ms |
 | Marketing focal entrance | 500 to 800ms, one per page |
 | Spinner rotation | 700 to 1000ms per turn, linear |
 

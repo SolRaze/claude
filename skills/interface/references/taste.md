@@ -19,6 +19,9 @@ audience check | first question
 
 working with sol
 - preview before building | large previews, every meaningful change
+- show the current default first as the baseline | variants after, judged against it
+- tuning a value: grid of two axes (colour x stop, angle x brightness), current one marked
+- emulate before applying: drive the live page to every state (each hour, each tilt) and show them together | apply only on sol's word
 - numbered versions + real alternates to pick from | sol names the winners, build on those, replace the rest
 - suggest first when sol says so | short interview when vision is unclear
 - find + cite the actual reference before drawing it | ask for the capture when missing
@@ -27,6 +30,7 @@ working with sol
 - do exactly what was named | no bonus animation, no adjacent redesign
 
 world
+- new theme or mode starts from the default's own values | adjust its angle, stops, finish | a fresh palette or look beside it gets rejected
 - one strong reference, matched 1:1 where sol says so: font, angle, perspective, glyph, animation, light | close is wrong
 - world from a real object or era: PS2 + PS3 console menus | Apple editing UI | game creation screens | bone + stress lines
 - interactive pieces may feel like a game: controller + direct controls, sound, fun to touch
@@ -40,8 +44,18 @@ surface
 - matte over glossy | vanilla-like over reflective | no effect that reads as an effect
 - gradient only when reference owns it + renders clean | banding or weird artefacts = remove
 - every color from one theme file | no per-part hues
-- depth by lit edges + pale outlines | 3D + model previews all black on black
+- depth by lit edges + pale outlines | rendered model previews all black on black
+- live site models keep their own finish | no pale crease lines or white borders drawn on them
+- one light source | field gradient's bright corner, 3D key light, highlights all agree | read the existing light first: angle, tint, brightness say the hour
+- time of day: the default's own gradient turns + dims by the hour | as written = the hour it reads | sun + moon one path, only tint + brightness change | separate glows rejected
+- light stays at level or above | light from below reads as a torch under the face | night dark (~10%) and cool, not navy
+- device tilt: light fixed in the room, tilt shifts it ±20 deg, smoothed | phones only, off under reduced motion | desktop never follows the cursor
+- a background that changes: check every state for legibility | dark objects, black controls, bright glows fail at night first
+- monotone: no hue anywhere except red on destructive actions
 - one resolution across world: pixel text matches pixel model
+- pixel look = whole frame at a low line count, text anti-aliased at that size, scaled up hard-edged by an integer | never 1-bit glyphs or big aliased blocks | recipe: weight 500, ~1.5 px round black stroke under, fill, white glow on the selected item only | smallest label ~14 drawn px
+- matching an existing look: render with its own code (browser canvas for case), never an imitation in another renderer | compare a zoomed crop, sample pixels to confirm hard blocks
+- pixel size per asset follows its shown size | an image the host shrinks needs coarser pixels to read the same
 - clean, Apple-like shapes + standard platform idioms outside a named world
 - glass deliberate, named per surface, never swept on
 
@@ -51,8 +65,10 @@ hierarchy
 - not every option available right away | options revealed by context + mode
 - menus sorted by meaning, never by order features were added
 - obvious object needs no label | item names + actions keep theirs
+- key art, store capsules, launcher tiles: title + icon only | no fake commands, no repeated title, no host or URL lines
 - precise alignment + proportion: icon aligned to title, logo sized to it, nothing covers controls or selection light
 - sibling tools share controls + color scheme + pill shape
+- persistent controls stay put across views | fixes keep existing placement unless asked
 - natural layouts over mechanical ones: Fibonacci spiral over a plain circle
 
 rejects

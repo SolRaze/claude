@@ -46,6 +46,7 @@ overlays
 - prefer inline or progressive disclosure | modal only when task must interrupt or needs protected focus
 - modal: `<dialog>` or accessible primitive | focus trapped | Escape closes | focus returns to trigger | background scroll locked | visible close button | backdrop 40 to 60% black
 - destructive confirm names object + consequence ("Delete 'Q3 report'? This cannot be undone.") | button repeats verb ("Delete report") | undoable action: skip confirm, Undo in toast
+- confirm opens on safe choice (Cancel) | only destructive option red | consequence copy states verified facts only
 - popovers + dropdowns: open from trigger (`transform-origin` at trigger) | close on outside click + Escape | keyboard navigable
 - tooltips: supplementary only | never only place for essential info | appear on focus too | 300 to 500ms delay first, instant next in group
 - toasts: transient outcomes only | 4 to 6s visible | pause on hover/focus | `aria-live="polite"` | Undo where possible | errors needing action stay until dismissed

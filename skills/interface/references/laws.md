@@ -2,7 +2,7 @@ UI/UX laws
 
 laws that change decisions | rule + code + common break
 sources lawsofux.com (Jon Yablonski) | Nielsen Norman Group | Don Norman | WCAG 2.2
-shared numbers live in SKILL.md | review report format lives in `review.md`, cite law in Rule column
+shared numbers live in SKILL.md | review format, Nielsen heuristics + checklist live in `review.md`, cite law in Rule column
 
 1 Jakob's Law | users spend most time on other products, expect yours to work the same
 - do: logo top-left links home | search top | cart/account top-right | settings under avatar | standard icons (trash = delete, gear = settings) | underlined or clearly colored links | native inputs (`<select>`, `<input type="date">`)
@@ -20,14 +20,7 @@ holds for options user must compare | sorted list user knows how to search (coun
 - one big decision into few small sequential ones (wizard, one question per step on mobile)
 - long lists (> ~10 items): search/typeahead | headings | "Recent" first
 - highlight recommended option so user can skip comparing
-```html
-<!-- one primary, one quiet secondary, the rest hidden -->
-<button class="btn-primary">Send invoice</button>
-<button class="btn-ghost">Save draft</button>
-<details><summary>More options</summary>...</details>
-```
-- measure: time to first click + drop-off on decision screen | many hover between options or leave = too many or too equal
-- related, Choice Overload: jam study (Iyengar + Lepper 2000) 24 jams drew 60% of passers-by vs 40% for 6 | of those who stopped, ~3% bought vs ~30% | Scheibehenne 2010 meta-analysis, 50 experiments, N = 5,036: mean effect near zero, high variance | a risk to test, not a law
+- related, Choice Overload: too many options can stall choice | evidence mixed | a risk to test, not a law
 - common violations: toolbars with 12 equal-weight buttons | forms asking everything up front | "Choose your plan" with 6 tiers + 40-row comparison | two equally loud buttons ("Save" + "Save and continue") side by side
 - do not overdo: hiding frequent actions behind menus slows experts | simplify for majority, keep shortcuts for power users
 
@@ -44,7 +37,7 @@ about 4 chunks in practice | "7 +/- 2" is the popular version
 
 5 Doherty Threshold | keep responses under ~400 ms
 Nielsen limits: 0.1 s instant | 1 s flow of thought | 10 s attention
-- optimistic UI for likes, toggles, saves | skeletons for content over ~300 ms | spinner over 1 s | progress bar with time or steps over ~10 s | disable + show state on submit, stops double clicks
+- optimistic UI for likes, toggles, saves | skeletons for content over ~300 ms | indicator over 1 s: skeleton for content, spinner inside small controls | progress bar with time or steps over ~10 s | disable + show state on submit, stops double clicks
 - common violation: blank screen while fetching | submit button with no feedback
 
 6 Gestalt grouping | Proximity, Common Region, Similarity, Uniform Connectedness
@@ -85,21 +78,8 @@ user or system deals with it | prefer system
 - common violation: main action buried mid long menu
 
 14 Aesthetic-Usability Effect | attractive looks perceived as easier to use
-users forgive small usability issues in polished products | visual appeal judged within ~50 ms of first sight (Lindgaard 2006) | design look named in 46.1% of consumer credibility comments, experts far less (Fogg et al. 2002)
-- cheap polish that pays
-  - one spacing scale | no random 13 px gaps
-  - one type scale | 3 to 4 weights | max 2 families | values per `typography.md`
-  - everything aligned to grid | one left edge per column
-  - limited palette: one brand/accent, neutrals, semantic red/green/amber only for status
-  - consistent radius, shadow, icon set (one library, one stroke width)
-  - real content + images in designs, no lorem ipsum, look survives real data
-```css
-:root {
-  --space-1: 4px; --space-2: 8px; --space-3: 16px; --space-4: 24px; --space-5: 32px;
-  --text-sm: 0.875rem; --text-base: 1rem; --text-lg: 1.125rem; --text-xl: 1.3125rem;
-  --radius: 8px;
-}
-```
+users forgive small usability issues in polished products | appeal judged within ~50 ms of first sight
+- cheap polish that pays: one spacing scale | one type scale | one grid edge per column | limited palette | one radius + icon set | real content
 - danger: hides real usability problems in testing | pretty prototype rated "easy" even when task fails | test tasks, measure success rate + time, not opinions
 - no trading function for looks: low-contrast gray text, icon-only buttons, hidden labels look clean, fail accessibility
 - common violations: mixed spacing + font sizes across screens | three shades of almost same blue | default browser styles beside custom design system | beautiful hero, broken form
@@ -108,39 +88,11 @@ users forgive small usability issues in polished products | visual appeal judged
 - find core flows (analytics, support tickets) | make them fastest + most visible | demote rest to secondary menus
 - common violation: equal visual weight for rarely used export + daily main action
 
-Nielsen's 10 heuristics
-1. visibility of system status: always show what is happening (loading, saved, sent)
-2. match real world: user words, not internal jargon or DB field names
-3. user control + freedom: undo, cancel, back, close everywhere | undo over "are you sure?"
-4. consistency + standards: same thing, same name, same look (see Jakob)
-5. error prevention: constraints, defaults, confirm only destructive + irreversible
-6. recognition over recall: show options, recent items, examples
-7. flexibility + efficiency: shortcuts, bulk actions, remembered preferences for experts
-8. aesthetic + minimalist design: every extra element competes with important ones
-9. help recover from errors: what went wrong, why, how to fix, next to field
-10. help + documentation: contextual, searchable, task-oriented
-
 Norman's interaction principles
 - affordance + signifier: clickable things look clickable (cursor, hover, shape, underline)
 - feedback: every action gets immediate visible response
 - mapping: controls placed + moving like their effect (slider right = more)
 - constraints: make wrong input impossible (input masks, native types, `min`/`max`) | submit stays enabled, validates, per `components.md`
-
-review checklist
-- [ ] one clear primary action per screen (Von Restorff, Hick)
-- [ ] familiar patterns + placements (Jakob)
-- [ ] targets big enough, close to thumb/cursor (Fitts)
-- [ ] nothing user must remember between screens (Cognitive Load)
-- [ ] feedback within 100 ms, loading states, no double submit (Doherty, Heuristic 1)
-- [ ] spacing groups related things, same function looks same (Gestalt)
-- [ ] system does the work: defaults, autodetect, pre-fill (Tesler)
-- [ ] forgiving input, errors next to fields, input preserved (Postel, Heuristic 9)
-- [ ] undo/back/cancel available, confirm only destructive (Heuristic 3, 5)
-- [ ] success + error states designed, not default (Peak-End)
-- [ ] progress shown in multi-step flows (Goal-Gradient)
-- [ ] most important items first or last (Serial Position)
-- [ ] contrast, target sizes, focus states, reduced motion ok (SKILL.md numbers)
-- [ ] core 20% of tasks are fastest path (Pareto)
 
 anti-patterns to refuse
 dark patterns break these laws on purpose: confirmshaming | hidden unsubscribe | pre-ticked paid add-ons | fake countdowns | roach-motel cancellation

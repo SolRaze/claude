@@ -2,26 +2,52 @@ review
 
 how to run
 1. specificity first: could unrelated product use this layout, copy, palette unchanged | answer before details
-2. walk 2 to 3 relevant personas | note exact failing elements
+2. required passes | each reported, even when clean
+   - tasks: first screen + primary task as stranger
+   - visual: hierarchy | loudest element is the right one | framing + overlap | alignment | small text legibility | against `taste.md` when sol's
+   - placement: persistent controls measured per view, x + y | same control same place | action near what it acts on | thumb reach | overlaps at 375px + 1440px
+   - accessibility: keyboard, focus, screen reader, contrast computed from real colors
+   - states + copy: locked, disabled, empty, loading, error, labels
+3. walk 2 to 3 relevant personas | note exact failing elements
    - impatient power user: keyboard, speed, bulk actions
    - confused first-timer: jargon, missing guidance, unclear next step
    - screen-reader + keyboard-only user: labels, focus order, announcements
    - distracted one-handed mobile user: thumb reach, target size, interruptions
    - stress tester: long names, 1,000 rows, slow network, double clicks
-3. score (below)
-4. report | this table is the one review format | most severe first | one-line verdict after
+4. score (below) | only from lists in this file
+5. report | this table is the one review format | most severe first | list what was not checked | one-line verdict after
+6. split findings into function and look | "fix it" or "fix given" on an existing UI covers function only: states, errors, keyboard, screen reader names, invisible hit areas, responsive breakage | look findings stay proposals until named one by one: icon swaps, restyled buttons, recolors, regrouped panels, moved bars | a contrast or size fix that changes the look is a look finding | after fixing, render beside the prior version, no visible change except the new states
 
-| Sev | Where | Problem | Rule | Fix (exact values) |
-|---|---|---|---|---|
-| P1 | Checkout, "Pay" button | 32px tall, beside "Cancel" with 4px gap | Fitts, touch target | 48px height, 16px gap, Cancel as text link |
+| Sev | Where | Problem | Rule | Fix (exact values) | Look |
+|---|---|---|---|---|---|
+| P1 | Checkout, "Pay" button | 32px tall, beside "Cancel" with 4px gap | Fitts, touch target | 48px height, 16px gap, Cancel as text link | keeps |
 
 severity: P0 blocks task or loses data | P1 major, users would contact support | P2 minor, workaround exists | P3 polish
 motion reviews: Problem + Fix cells give before + after durations and curves
+Look: keeps | moves control | changes look | any fix not `keeps` on existing look is sol's call, say so, never hide or relocate controls unasked
 
 scores
-- Nielsen heuristics (`laws.md`): 0 to 4 each, total /40 | 36+ excellent | 28 to 35 good | 20 to 27 acceptable | 12 to 19 poor | under 12 critical | n/a where not applicable, rescale
+- Nielsen heuristics (below): 0 to 4 each, total /40 | 36+ excellent | 28 to 35 good | 20 to 27 acceptable | 12 to 19 poor | under 12 critical | n/a where not applicable, rescale
 - technical audit: 0 to 4 each, total /20: accessibility, performance, theming (tokens, dark mode), responsive, implementation integrity (states, no hard-coded values) | 18+ excellent | 14 to 17 good | 10 to 13 acceptable | under 10 poor
 - cognitive load, count failures: single focus | chunking (4 or fewer per group) | grouping | hierarchy | one decision at a time | 4 or fewer visible choices at a decision point | no memory across screens | progressive disclosure | 0 to 1 low | 2 to 3 moderate | 4+ high
+
+Nielsen heuristics
+1. visibility of system status: always show what is happening (loading, saved, sent)
+2. match real world: user words, not internal jargon or DB field names
+3. user control + freedom: undo, cancel, back, close everywhere | undo over "are you sure?"
+4. consistency + standards: same thing, same name, same look (see Jakob)
+5. error prevention: constraints, defaults, confirm only destructive + irreversible
+6. recognition over recall: show options, recent items, examples
+7. flexibility + efficiency: shortcuts, bulk actions, remembered preferences for experts
+8. aesthetic + minimalist design: every extra element competes with important ones
+9. help recover from errors: what went wrong, why, how to fix, next to field
+10. help + documentation: contextual, searchable, task-oriented
+
+evidence
+- visible tab | settled state | wait out poses + tweens before measuring or capturing
+- screen looks wrong: recheck after longer wait before reporting
+- fresh-visitor run in separate profile | user's data untouched
+- failed test tool is not a failed feature | say which until cause known
 
 pre-ship checklist
 
@@ -30,6 +56,7 @@ direction
 - [ ] one signature move | everything else quiet | specificity test passes
 - [ ] one theme per mode, one accent, one radius system, one icon family, one motion library
 - [ ] existing look untouched unless redesign was asked | new look passes `taste.md` stranger test unless audience is sol only
+- [ ] named reference: capture beside build at same size | colors sampled, not estimated | selection state matches source
 
 layout and type
 - [ ] hero fits viewport | headline 2 lines max on desktop | one primary CTA visible without scrolling
@@ -61,8 +88,12 @@ motion
 responsive and performance
 - [ ] no horizontal scroll at 320px | checked 375px, 1440px, landscape phone | `dvh` not `vh`
 - [ ] touch targets 44px+ | primary action in thumb reach on mobile | safe areas respected
+- [ ] persistent controls same place across views | nothing overlaps at any checked size
 - [ ] LCP < 2.5s, INP < 200ms, CLS < 0.1 | images sized with `aspect-ratio` | fonts preloaded + subset
 - [ ] no console errors, unused imports, `any` left from build
+
+sound (when surface has it)
+- [ ] source's own sounds when they exist | move, confirm, cancel each distinct | mute control | silent fallback without audio server
 
 hardening inputs
 100+ character names | emoji | RTL text | CJK | Lithuanian diacritics | empty strings | 0 + negative numbers | 1,000+ list items | offline | 3G throttling | rapid double submit | forced API 500 | expired session | every empty state
