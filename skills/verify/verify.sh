@@ -35,6 +35,8 @@ selftest() {
   c 0 "shell positional"          a.sh 'echo $1 $2'
   c 0 "PHP version"               a.txt "needs PHP"" 8.3"
   c 0 "file named +++"            a.txt "+++ not a header"
+  c 0 "binary patch body"         a.patch $'GIT binary patch\nliteral 9\nzcm\$''50.00x\n'
+  c 1 "amount after binary patch"  a.patch $'GIT binary patch\nliteral 9\nzcmx\n\ncost \$''50.00'
   c 1 "message capitals"          a.txt x "Hook fix"
   c 1 "message one word"          a.txt x "fix"
   c 1 "message five words"        a.txt x "one two three four five"
@@ -66,8 +68,10 @@ fi
 # positionals pass; `PHP N` needs two digits so the language version passes.
 eur=$'\xe2\x82\xac' gbp=$'\xc2\xa3' yen=$'\xc2\xa5' php=$'\xe2\x82\xb1' inr=$'\xe2\x82\xb9'
 CUR="($eur|$gbp|$yen) ?[0-9]|[0-9] ?($eur|$gbp|$yen)|\\\$[0-9]+[.,]?[0-9]|[0-9] ?(USD|EUR|GBP|PHP|INR|JPY)\\b|\\b(USD|EUR|GBP|INR|JPY) ?[0-9]|\\bPHP ?[0-9]{2}|$php|$inr ?[0-9]|\\bRs\\.? ?[0-9]"
-# Added lines are those after a hunk header; the +++ file header is not one.
-git -C "$repo" diff --cached -U0 --no-color --no-ext-diff | awk '/^diff --git/{h=0} /^@@/{h=1;next} h && /^\+/' |
+# Added lines are those after a hunk header; the +++ file header is not one. The base85
+# body of a committed `.patch` file's GIT binary patch, up to its blank line, is skipped.
+git -C "$repo" diff --cached -U0 --no-color --no-ext-diff |
+  awk '/^diff --git/{h=0;b=0} /^@@/{h=1;next} /^\+GIT binary patch$/{b=1;next} b && /^\+$/{b=0;next} h && !b && /^\+/' |
   grep -E "$CUR" | head -5 | sed 's/^/verify: currency: /' | grep . && fail=1
 
 # Commit message: lowercase, two to four words, subject only.
