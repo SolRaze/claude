@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2181
 # Stop: once the main context passes HANDOVER_AT tokens, make Claude print a handover
 # paste-box instead of the session growing on. Auto-compact stays off; this is the
 # replacement. Exit 2 feeds stderr back to Claude and makes it continue one more step.
@@ -10,10 +11,12 @@ AT=${HANDOVER_AT:-200000}
 STEP=${HANDOVER_STEP:-150000}
 STATE=${HANDOVER_STATE:-$HOME/.claude/state/handover}
 
+# Parsed line by line: a half-written last line must not void the count. Zero-usage entries
+# (synthetic error messages) are skipped.
 ctx_of() {
-  tail -n 200 "$1" 2>/dev/null | $JQ -s '[.[] | select(.type=="assistant") | .message.usage
+  tail -n 200 "$1" 2>/dev/null | $JQ -Rn '[inputs | fromjson? | objects | select(.type=="assistant") | .message.usage
     | select(.) | (.input_tokens // 0) + (.cache_read_input_tokens // 0)
-    + (.cache_creation_input_tokens // 0)] | last // 0' 2>/dev/null
+    + (.cache_creation_input_tokens // 0) | select(. > 0)] | last // 0' 2>/dev/null
 }
 
 selftest() {
@@ -26,6 +29,10 @@ selftest() {
   "${hook[@]}" <<<"$in" 2>/dev/null; [ $? = 0 ] || { echo "FAIL fired twice"; return 1; }
   "${hook[@]}" <<<"{\"session_id\":\"s1\",\"transcript_path\":\"$t\",\"stop_hook_active\":true}"; [ $? = 0 ] || { echo "FAIL loop guard"; return 1; }
   u 1800; "${hook[@]}" <<<"$in" 2>/dev/null; [ $? = 2 ] || { echo "FAIL no refire after step"; return 1; }
+  printf '{"type":"assistant","message":{"usage":{"input_tokens":0}}}\n"stray"\n{"type":"assis' >>"$t"
+  "${hook[@]}" <<<"{\"session_id\":\"s2\",\"transcript_path\":\"$t\"}" 2>/dev/null; [ $? = 2 ] || { echo "FAIL zero-usage entry or partial last line hid the count"; return 1; }
+  "${hook[@]}" <<<"{\"session_id\":\"s3\",\"transcript_path\":\"$d/none.jsonl\"}"; [ $? = 0 ] || { echo "FAIL missing transcript blocked"; return 1; }
+  "${hook[@]}" <<<'{"session_id":' 2>/dev/null; [ $? = 0 ] || { echo "FAIL bad input blocked"; return 1; }
   echo "ok"
 }
 [ "$1" = --selftest ] && { selftest; exit; }

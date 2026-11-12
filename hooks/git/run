@@ -1,0 +1,60 @@
+#!/bin/bash
+# shellcheck disable=SC2329
+# Global git hooks, reached through core.hooksPath; every hook name here is a symlink to this file.
+#   commit-msg -> refuse a message carrying an AI trace
+#   pre-push   -> refuse outgoing commits or annotated tags carrying one, per destination remote
+# Each name then chains to the repo's own .git/hooks/<name>, which core.hooksPath would otherwise
+# shadow. A repo hook under a name with no symlink here does not run: add the symlink.
+# TRACE matches no-ai-trace.sh; keep the two in step.
+TRACE='co-authored-by|generated with|noreply@anthropic|anthropic|claude-(code|opus|sonnet|haiku|fable|mythos|[0-9])|claude\.(ai|com)\b|(^|[^./[:alnum:]_-])claude(\.?$|\.[^[:alnum:]]|[^[:alnum:]_.-])'
+hit() { grep -qiE "$TRACE"; }
+no() { echo "$name: $1" >&2; exit 1; }
+
+selftest() {
+  local d here; d=$(mktemp -d); here=$(cd "$(dirname "$0")" && pwd)
+  trap 'rm -rf "$d"' EXIT
+  g() { git -C "$d/w" -c core.hooksPath="$here" -c user.name=t -c user.email=t@t "$@" >/dev/null 2>&1; }
+  raw() { git -C "$d/w" -c core.hooksPath=/dev/null -c user.name=t -c user.email=t@t "$@" >/dev/null 2>&1; }
+  git init -q --bare "$d/a.git"; git init -q --bare "$d/b.git"; git init -q "$d/w"
+  raw remote add a "$d/a.git"; raw remote add b "$d/b.git"
+  t() { local want=$1 label=$2; shift 2; "$@"; local got=$?; [ "$got" != 0 ] && got=1
+        if [ "$got" = "$want" ]; then echo "ok   $label"; else echo "FAIL $label"; fail=1; fi; }
+  t 0 "commit plain message"        g commit --allow-empty -m "hook fix"
+  t 1 "commit trailer"              g commit --allow-empty -m "x" -m "Co-Authored-By: Claude <noreply@anthropic.com>"
+  t 0 "commit path mention"         g commit --allow-empty -m "claude.sh pill tick"
+  t 0 "push clean"                  g push a HEAD:refs/heads/main
+  raw commit --allow-empty -m "made with claude"
+  t 1 "push traced commit"          g push a HEAD:refs/heads/main
+  raw push a HEAD:refs/heads/main; raw fetch a
+  t 1 "push to second remote"       g push b HEAD:refs/heads/main
+  raw reset --hard HEAD~1; raw tag -a v1 -m "by claude"
+  t 1 "push traced annotated tag"   g push b v1
+  printf '#!/bin/sh\nexit 7\n' >"$d/w/.git/hooks/commit-msg"; chmod +x "$d/w/.git/hooks/commit-msg"
+  t 1 "repo hook chained"           g commit --allow-empty -m "plain"
+  exit "${fail:-0}"
+}
+[ "$1" = --selftest ] && selftest
+
+name=$(basename "$0")
+case $name in
+  commit-msg)
+    grep -v '^#' "$1" | hit && no "AI trace in the commit message" ;;
+  pre-push)
+    in=$(cat)
+    while read -r _ lsha _ rsha; do
+      [ -n "$lsha" ] || continue
+      [[ $lsha =~ ^0+$ ]] && continue
+      [ "$(git cat-file -t "$lsha" 2>/dev/null)" = tag ] && git cat-file -p "$lsha" | hit &&
+        no "annotated tag $lsha carries an AI trace"
+      # Known remote tip: only what it lacks. New ref or unfetched tip: everything this remote's
+      # tracking refs lack, so a commit already on another remote is still scanned.
+      if [[ ! $rsha =~ ^0+$ ]] && git cat-file -e "$rsha" 2>/dev/null; then range=("$rsha..$lsha")
+      else range=("$lsha" --not "--remotes=$1"); fi
+      git log "${range[@]}" --format='%an <%ae>%n%cn <%ce>%n%B' 2>/dev/null | hit &&
+        no "outgoing commits to $1 carry an AI trace (message, author or committer)"
+    done <<<"$in" ;;
+esac
+
+own="$(git rev-parse --git-common-dir 2>/dev/null)/hooks/$name"
+[ -x "$own" ] || exit 0
+if [ "$name" = pre-push ]; then exec "$own" "$@" <<<"$in"; else exec "$own" "$@"; fi

@@ -11,8 +11,9 @@ Run before `git commit`, with the exact message:
 Exit 0 = commit. Any `verify:` line = fix it first, never commit around it.
 
 Checks: message lowercase, two to four words, no body, no `type(scope):`, no AI mention.
-Staged `CLAUDE.md`, `AGENTS.md`, `MEMORY.md`, `raw-prompt.md`, `Inbox/`, `plans/`, `.claude/` are refused.
-Added lines with a currency amount are refused.
+Staged `CLAUDE.md`, `CLAUDE.local.md`, `AGENTS.md`, `MEMORY.md`, `raw-prompt.md`, `Inbox/`, `plans/`, `.claude/` are refused, in any letter case.
+A currency amount in an added line or in the message is refused.
+Outside a git repo it exits 1. `verify.sh --selftest` runs its own cases.
 
 Gotchas
 - Repos that track `.claude/` on purpose (the dotfiles stow tree) still fail; unstage or confirm with sol.

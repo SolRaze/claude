@@ -17,9 +17,11 @@ selftest() {
   git -C "$d" init -q
   printf '{"scripts":{"lint":"exit 1"}}' >"$d/package.json"; : >"$d/package-lock.json"; mkdir "$d/node_modules"
   echo 'x' >"$d/a.js"
-  local hook=(bash "$0") in="{\"cwd\":\"$d\"}"
+  local hook=(bash "$(cd "$(dirname "$0")" && pwd)/$(basename "$0")") in="{\"cwd\":\"$d\"}"
   "${hook[@]}" <<<"$in" 2>/dev/null; [ $? = 2 ] || { echo "FAIL lint error not caught"; return 1; }
   "${hook[@]}" <<<"{\"cwd\":\"$d\",\"stop_hook_active\":true}"; [ $? = 0 ] || { echo "FAIL loop guard"; return 1; }
+  (cd "$d" && "${hook[@]}" <<<'{"cwd":' 2>/dev/null); [ $? = 0 ] || { echo "FAIL bad input blocked"; return 1; }
+  (cd "$d" && "${hook[@]}" <<<'{}' 2>/dev/null); [ $? = 0 ] || { echo "FAIL input without cwd blocked"; return 1; }
   printf '{"scripts":{"lint":"true"}}' >"$d/package.json"; touch "$d/a.js"
   "${hook[@]}" <<<"$in"; [ $? = 0 ] || { echo "FAIL clean lint blocked"; return 1; }
   [ -f "$d/.git/claude-verify-stamp" ] || { echo "FAIL no stamp"; return 1; }
@@ -34,8 +36,11 @@ selftest() {
 [ "$1" = --selftest ] && { selftest; exit; }
 
 in=$(cat)
-[ "$($JQ -r '.stop_hook_active // false' <<<"$in")" = true ] && exit 0
-cd "$($JQ -r '.cwd // empty' <<<"$in")" 2>/dev/null || exit 0
+# No jq or bad input: the loop guard is unreadable, so never block.
+active=$($JQ -r '.stop_hook_active // false' <<<"$in" 2>/dev/null) || exit 0
+[ "$active" = true ] && exit 0
+cwd=$($JQ -r '.cwd // empty' <<<"$in"); [ -n "$cwd" ] || exit 0
+cd "$cwd" 2>/dev/null || exit 0
 root=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
 cd "$root" || exit 0
 stamp="$(git rev-parse --absolute-git-dir)/claude-verify-stamp"
