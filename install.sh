@@ -32,3 +32,8 @@ jq -s '.[0] as $a | .[1] as $b | ($a * $b) | .hooks =
   ([$a.hooks, $b.hooks] | map((. // {}) | to_entries) | add | group_by(.key)
    | map({key: .[0].key, value: (map(.value) | add | unique)}) | from_entries)' \
   "$s.bak" "$R/settings.json" > "$s"
+
+# Global git hooks: AI-trace check on commit-msg and pre-push. An existing hooksPath is kept.
+hp=$(git config --global core.hooksPath || true)
+if [ -z "$hp" ]; then git config --global core.hooksPath "$D/hooks/git"
+elif [ "${hp/#\~/$HOME}" != "$D/hooks/git" ]; then echo "skip core.hooksPath (set to $hp)"; fi

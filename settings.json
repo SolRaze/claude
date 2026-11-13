@@ -77,7 +77,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.claude/hooks/no-ai-trace.sh"
+            "command": "$HOME/.claude/hooks/no-ai-trace.sh",
+            "timeout": 10
           }
         ]
       },
